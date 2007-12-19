@@ -8,13 +8,13 @@
 Summary:	DateTime::Format::Builder - Create DateTime parser classes and objects
 Summary(pl.UTF-8):	DateTime::Format::Builder - tworzenie klas i obiektów analizatorów DateTime
 Name:		perl-DateTime-Format-Builder
-Version:	0.7807
+Version:	0.7901
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-authors/id/D/DR/DROLSKY/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	4f6ee670cab944db0492e70ca8df3be3
+# Source0-md5:	43407285237cdc3cdd2c08b936229198
 URL:		http://search.cpan.org/dist/DateTime-Format-Builder/
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
