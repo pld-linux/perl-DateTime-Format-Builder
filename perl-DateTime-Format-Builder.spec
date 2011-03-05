@@ -8,13 +8,14 @@
 Summary:	DateTime::Format::Builder - Create DateTime parser classes and objects
 Summary(pl.UTF-8):	DateTime::Format::Builder - tworzenie klas i obiektów analizatorów DateTime
 Name:		perl-DateTime-Format-Builder
-Version:	0.7901
+Version:	0.80
 Release:	1
-# same as perl
+Epoch:		1
+# same as perl 5.000 or later perl 5
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-authors/id/D/DR/DROLSKY/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	43407285237cdc3cdd2c08b936229198
+Source0:	http://www.cpan.org/modules/by-module/DateTime/DROLSKY/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	f6c5d5a17b5b7478ff555a2d3cce5136
 URL:		http://search.cpan.org/dist/DateTime-Format-Builder/
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -69,15 +70,17 @@ rm -rf $RPM_BUILD_ROOT
 ./Build install
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-cp -a examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorlib}/DateTime/Format/Builder.pod
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS Changes CREDITS INSTALL README
-%{perl_vendorlib}/DateTime/Format/*.pm
+%doc AUTHORS CREDITS Changes LICENCE
+%{perl_vendorlib}/DateTime/Format/Builder.pm
 %{perl_vendorlib}/DateTime/Format/Builder
-%{_mandir}/man3/*
+%{_mandir}/man3/DateTime::Format::Builder*.3pm*
 %{_examplesdir}/%{name}-%{version}
