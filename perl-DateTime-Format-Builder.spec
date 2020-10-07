@@ -7,23 +7,24 @@
 Summary:	DateTime::Format::Builder - Create DateTime parser classes and objects
 Summary(pl.UTF-8):	DateTime::Format::Builder - tworzenie klas i obiektów analizatorów DateTime
 Name:		perl-DateTime-Format-Builder
-Version:	0.80
+Version:	0.83
 Release:	1
 Epoch:		1
-# same as perl 5.000 or later perl 5
-License:	GPL v1+ or Artistic
+License:	Artistic v2.0
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/DateTime/DROLSKY/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	f6c5d5a17b5b7478ff555a2d3cce5136
-URL:		http://search.cpan.org/dist/DateTime-Format-Builder/
-BuildRequires:	perl-Module-Build
+Source0:	http://www.cpan.org/modules/by-module/DateTime/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	aa41917ca9ad69b3898728ce9c2fb477
+URL:		https://metacpan.org/release/DateTime-Format-Builder
+BuildRequires:	perl-ExtUtils-MakeMaker
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with tests}
-BuildRequires:	perl-Class-Factory-Util >= 1.6
-BuildRequires:	perl-DateTime >= 0.12
+BuildRequires:	perl-DateTime >= 1.0.0
 BuildRequires:	perl-DateTime-Format-Strptime >= 1.04
 BuildRequires:	perl-Params-Validate >= 0.72
+BuildRequires:	perl-Scalar-List-Utils
+BuildRequires:	perl-Test-Simple >= 0.96
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -56,29 +57,30 @@ oczekiwał autor.
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
 %build
-%{__perl} Build.PL \
-	destdir=$RPM_BUILD_ROOT \
-	installdirs=vendor
-./Build
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor
 
-%{?with_tests:./Build test}
+%{__make}
+
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-./Build install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%{__rm} $RPM_BUILD_ROOT%{perl_vendorlib}/DateTime/Format/Builder.pod
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorlib}/DateTime/Format/Builder/Tutorial.pod
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS CREDITS Changes LICENCE
+%doc Changes README.md
 %{perl_vendorlib}/DateTime/Format/Builder.pm
 %{perl_vendorlib}/DateTime/Format/Builder
 %{_mandir}/man3/DateTime::Format::Builder*.3pm*
