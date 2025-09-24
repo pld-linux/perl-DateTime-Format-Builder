@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	tests		# do not perform "make test"
+%bcond_without	tests	# unit tests
 #
 %define	pdir	DateTime
 %define	pnam	Format-Builder
@@ -12,9 +12,9 @@ Release:	1
 Epoch:		1
 License:	Artistic v2.0
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/DateTime/%{pdir}-%{pnam}-%{version}.tar.gz
+Source0:	https://www.cpan.org/modules/by-module/DateTime/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	aa41917ca9ad69b3898728ce9c2fb477
-URL:		https://metacpan.org/release/DateTime-Format-Builder
+URL:		https://metacpan.org/dist/DateTime-Format-Builder
 BuildRequires:	perl-ExtUtils-MakeMaker
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
